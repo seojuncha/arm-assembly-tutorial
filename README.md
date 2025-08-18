@@ -46,21 +46,21 @@ $ sudo apt install gcc-arm-none-eabi qemu gdb-multiarch
 ```
 
 ## Who Is This For?
-•	Students learning computer architecture or embedded systems
-•	Developers curious about how C translates to machine code
-•	Anyone who wants to really understand what’s happening under the hood
+-	Students learning computer architecture or embedded systems
+-	Developers curious about how C translates to machine code
+-	Anyone who wants to really understand what’s happening under the hood
 
 ## Contributing
 
 If you’d like to:
-•	Add examples for new instructions
-•	Improve explanations
-•	Fix errors or typos
+-	Add examples for new instructions
+-	Improve explanations
+-	Fix errors or typos
 
 Feel free to submit a Pull Request or open an Issue!
 
 ## Recommended Reading
-* [ARM Documents](https://github.com/ARM-software/abi-aa)
+- [ARM Documents](https://github.com/ARM-software/abi-aa)
 
 ## License
 
