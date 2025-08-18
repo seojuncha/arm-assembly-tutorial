@@ -42,7 +42,7 @@ Each folder contains:
 
 Install on Ubuntu:
 ```bash
-$ sudo apt install gcc-arm-none-eabi qemu gdb-multiarch
+sudo apt install gcc-arm-none-eabi qemu gdb-multiarch
 ```
 
 ## Who Is This For?
