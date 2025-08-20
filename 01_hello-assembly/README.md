@@ -96,7 +96,10 @@ This helps verify that your program entry point, sections, and instructions are 
 ```bash
 arm-none-eabi-readelf -h only-main.elf
 ```
-__Sample Output__
+
+<details>
+<summary>Sample Output</summary>
+
 ```
 ELF Header:
   Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
@@ -107,11 +110,12 @@ ELF Header:
   Start of program headers:          52 (bytes into file)
   Start of section headers:          4560 (bytes into file)
 ```
+</details>
+
 Check that:
 -	Entry point address is 0x10000 (as set in link.ld)
 -	Machine is ARM
 -	Class is ELF32
-
 
 ### arm-none-eabi-readelf -S (Section Header)
 ```bash
