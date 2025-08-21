@@ -1,6 +1,6 @@
 # Topic: Moving Data Around
 
-This section focuses on how to move data between ARM registers and how to use shifted operands in data-processing instructions.
+This section focuses on how to move data between ARM registers and how to use shifted operands in **data-processing instructions**.
 
 ## Learning Goals
 - Understand how to move immediate values and register values using `mov`
@@ -50,7 +50,7 @@ gdb-multiarch shift-operand.elf
 	- Loads `r0 << 1` into `r2`, and updates condition flags (e.g. carry, zero, negative).
 -	`mov r0, #-32`
 	- This is encoded as `mvn r0, #31` because ARM immediate encoding uses 8-bit values rotated right.
--	ARM allows many instructions to include shifted operands, not just mov.
+-	ARM allows many instructions to include shifted operands, not just `mov`.
 Example:
 ```armasm
 add r2, r1, r0, lsr #2   @ r2 = r1 + (r0 >> 2)
@@ -59,33 +59,43 @@ add r2, r1, r0, lsr #2   @ r2 = r1 + (r0 >> 2)
 ### Checking Flags in GDB
 Use the following expressions to manually inspect CPSR flags:
 ```bash
-(gdb) p ($cpsr >> 29) & 1   # Carry flag (C)
 (gdb) p ($cpsr >> 31) & 1   # Negative flag (N)
 (gdb) p ($cpsr >> 30) & 1   # Zero flag (Z)
+(gdb) p ($cpsr >> 29) & 1   # Carry flag (C)
 (gdb) p ($cpsr >> 28) & 1   # Overflow flag (V)
 ```
 
 > The s suffix (e.g. `movs`, `adds`) is required to update the flags.
 
-### Key ARM Instructions & Shift Operations
-| Instruction | Description |
-|:---:|:---|
-|`mov`| Move immediate or register value |
-|`movs`| Same as mov but updates CPSR flags |
-|`mvn`| Move bitwise NOT of immediate value |
-|`lsl`| Logical Shift Left |
-|`lsr`| Logical Shift Right |
-|`asr`| Arithmetic Shift Right |
-|`ror`| Rotate Right |
-|`rrx`| Rotate Right with Extend (uses carry) |
+### Arithmetic vs Logical Shift
+ARM provides both logical and arithmetic shifts:
+| Instruction | Name                    | Keeps Sign | Fills With | Typical Use     |
+|-------------|-------------------------|------------|------------|-----------------|
+| `lsl`       | Logical Shift Left      | No         | Zero       | Multiply by 2ⁿ  |
+| `lsr`       | Logical Shift Right     | No         | Zero       | Unsigned divide |
+| `asr`       | Arithmetic Shift Right  | Yes        | Sign bit   | Signed divide   |
 
+
+### Key ARM Instructions & Shift Operations
+| Instruction | Description                           |
+|:-----------:|:--------------------------------------|
+| `mov`       | Move immediate or register value      |
+| `movs`      | Same as mov but updates CPSR flags    |
+| `mvn`       | Move bitwise NOT of immediate value   |
+| `lsl`       | Logical Shift Left                    |
+| `lsr`       | Logical Shift Right                   |
+| `asr`       | Arithmetic Shift Right                |
+| `ror`       | Rotate Right                          |
+| `rrx`       | Rotate Right with Extend (uses carry) |
+
+Use `asr` when working with signed values to maintain correct sign propagation.
 
 ## Related References
 -	ARM Data Processing Instruction Encoding
 -	Shift Operations in ARM
 -	ARMv4 Architecture Manual
 
-## Appendix: Sample Output
+## Appendix A: Sample Output
 You can use objdump to disassemble the binary:
 ```bash
 arm-none-eabi-objdump -d shift-operand.elf
@@ -123,9 +133,94 @@ Then use GDB to verify:
 (gdb) p ($cpsr >> 29) & 1
 ```
 
+## Appendix B: ARM Immediate Encoding (`mov` / `mvn`)
+
+### ARM Encoding Rule Summary
+ARM data-processing instructions support only a limited set of immediate values.  
+These are encoded as **8-bit values rotated right by even numbers of bits**:
+
+imm = imm8 ROR (2 * rot), where rot ∈ [0, 15]
+
+This allows for **many**, but not all, 32-bit constants.
+
+### Common Examples
+
+| Source               | Assembled As       | Encodable? | Notes                       |
+|:---------------------|:-------------------|:----------:|:----------------------------|
+| `mov r0, #0`         | `imm8=0x00`        | Yes         | All zero                    |
+| `mov r0, #255`     | `imm8=0xFF`        | Yes         | Max 8-bit                   |
+| `mov r0, #0x80000000`| `0x80 ROR #28`     | Yes         | Rotated value               |
+| `mov r0, #-1`        | `mvn r0, #0`       | Yes         | Bitwise NOT of 0            |
+| `mov r0, #-32`       | `mvn r0, #31`      | Yes         | ~31 = 0xFFFFFFE0            |
+| `mov r0, #0x100`     | —                  | No         | Not encodable               |
+| `mov r0, #0x12345678`| —                  | No         | Too complex                 |
+
 ## Next Step
 
 Now that you've learned how to move data between registers and use shift operations in ARM,
 let’s move on to **basic arithmetic instructions** like `add`, `sub`, and `neg`.
 
 Go to [`03_doing-math`](../03_doing-math/README.md) to **learn how arithmetic works at the instruction level**.
+
+
+## Bonus: Python Shift Simulator
+You can experiment with ARM-style shift and rotate operations using the following Python script.  
+This allows you to simulate `lsr`, `asr`, `ror`, and `rrx` instructions without running QEMU or GDB.
+
+<details>
+<summary>Click to expand sample script (scripts/shift-simulator.py)</summary>
+
+```python
+def logical_shift_right(val, n, bits=32):
+    mask = (1 << bits) - 1
+    return (val & mask) >> n
+
+def arithmetic_shift_right(val, n, bits=32):
+    if val & (1 << (bits - 1)):   # Negative
+        return ((val >> n) | ((1 << n) - 1) << (bits - n)) & ((1 << bits) - 1)
+    else:   # Positive
+        return val >> n
+
+def ror(val, n, bits=32):
+    n %= bits
+    return ((val >> n) | (val << (bits - n))) & ((1 << bits) - 1)
+
+def rrx(val, carry_in, bits=32):
+    lsb = val & 1
+    result = (carry_in << (bits - 1)) | (val >> 1)
+    carry_out = lsb
+    return result, carry_out
+
+nums = [26, -32]
+for x in nums:
+    print(f"\n=== {x} (0x{x & 0xffffffff:08X}) ===")
+    lsr = logical_shift_right(x, 1)
+    asr = arithmetic_shift_right(x, 1)
+    print(f"LSR 1: {lsr} [{hex(lsr)}]")
+    print(f"ASR 1: {asr} [{hex(asr)}]")
+
+x = 0x68  # 0b01101000
+rot = 4
+print(f"\nROR #{rot}:", hex(ror(x, rot)))
+
+res, cout = rrx(x, 1)
+print(f"RRX (carry=1): result={hex(res)}, carry_out={cout}")
+```
+
+</details>
+
+**Example Output**
+```
+=== 26 (0x0000001A) ===
+LSR 1: 13 [0xd]
+ASR 1: 13 [0xd]
+
+=== -32 (0xFFFFFFE0) ===
+LSR 1: 2147483632 [0x7ffffff0]
+ASR 1: 4294967280 [0xfffffff0]
+
+ROR #4: 0x80000006
+RRX (carry=1): result=0x80000034, carry_out=0
+```
+
+You can edit values or shift amounts and observe how results change, just like in GDB or on actual hardware.
