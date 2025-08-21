@@ -173,4 +173,4 @@ What’s going on:
 
 
 ## Next Steps
-Go to __02_moving-data-around__ to learn how to __move data between registers__ using `mov` and other basic instructions.
+Go to [`02_moving-data-around`](../02_moving-data-around/README.md) to learn how to __move data between registers__ using `mov` and other basic instructions.
