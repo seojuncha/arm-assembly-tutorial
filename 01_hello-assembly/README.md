@@ -1,4 +1,5 @@
-# Topic: Hello Assembly!
+# Chapter 1 - Hello Assembly!
+
 This is the first step in our ARMv4 assembly tutorial series.  
 We'll start by writing a minimal assembly program, compile it using a cross-compiler, run it with QEMU, and debug it using GDB.
 
@@ -16,7 +17,6 @@ We'll start by writing a minimal assembly program, compile it using a cross-comp
 | `only-main.s`       | A minimal assembly file that defines `_start` as the entry point |
 | `start.s` *(outside)* | Defines `_start` and calls `main()` (used with `call-only-main.c`) |
 | `link.ld` *(outside)* | Minimal linker script to define memory layout |
-
 
 > `start.s` and `link.ld` are assumed to be in the parent directory (`../`).
 

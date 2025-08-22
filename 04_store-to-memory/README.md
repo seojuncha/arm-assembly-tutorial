@@ -1,4 +1,4 @@
-# Topic: Store to Memory
+# Chapter 4 - Store to Memory
 
 In this chapter, we learn how to store and load data between registers and memory using ARM’s `str` and `ldr` instructions.  
 We also explore how C variable assignments are translated into assembly, and how stack memory grows and shrinks during function calls.

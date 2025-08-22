@@ -1,4 +1,4 @@
-# Topic: Branching
+# Chapter 5 - Branching
 
 In this chapter, we learn how to use labels and branch instructions to control program flow.  
 We’ll explore how the program counter (`pc`) changes with unconditional branch (`b`) and function-like branch with link (`bl`), including how the link register (`lr`) is used.

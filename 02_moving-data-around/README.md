@@ -1,4 +1,4 @@
-# Topic: Moving Data Around
+# Chapter 2 - Moving Data Around
 
 This section focuses on how to move data between ARM registers and how to use shifted operands in **data-processing instructions**.
 

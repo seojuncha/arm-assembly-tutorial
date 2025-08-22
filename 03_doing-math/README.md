@@ -1,4 +1,4 @@
-# Topic: Doing Math
+# Chapter 3 - Doing Math
 
 This chapter covers basic arithmetic instructions in ARM assembly and how they affect condition flags like carry and negative.  
 You’ll also learn about reverse subtraction and multiplication instructions.
