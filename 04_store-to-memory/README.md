@@ -106,7 +106,7 @@ Use them with flexible addressing modes such as:
 Now that you’ve learned how to access memory using `ldr` and `str`,
 we’ll move on to how to **control program flow using branches, labels, and conditional instructions**.
 
-Go to [`05_making-decisions`](../05_making-decisions/README.md) to explore conditional branching.
+Go to [`05_branching`](../05_branching/README.md) to explore conditional branching.
 
 ## Bonus. GDB Memory Debugging Tips
 When using `str` and `ldr`, you're moving data between registers and memory.  
