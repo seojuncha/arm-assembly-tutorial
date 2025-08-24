@@ -70,11 +70,6 @@ ARM provides two different flags to indicate different kinds of overflow:
 > `s` suffix means CPSR flags will be updated.
 > Use GDB to inspect C (carry) and N (negative) flag changes.
 
-## Related References
--	ARM Instruction Reference – Data Processing
--	Condition Flags in ARM
--	GDB ARM CPSR Bitmask
-
 ## ️ Next Step
 Now that you've covered the basics of arithmetic operations in ARM,  
 let’s move on to how we can **store and load values to and from memory** using instructions like `str` and `ldr`.

@@ -90,11 +90,6 @@ ARM provides both logical and arithmetic shifts:
 
 Use `asr` when working with signed values to maintain correct sign propagation.
 
-## Related References
--	ARM Data Processing Instruction Encoding
--	Shift Operations in ARM
--	ARMv4 Architecture Manual
-
 ## Appendix A: Sample Output
 You can use objdump to disassemble the binary:
 ```bash

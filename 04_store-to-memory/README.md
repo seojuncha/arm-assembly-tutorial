@@ -101,7 +101,6 @@ Use them with flexible addressing modes such as:
 -	[QEMU VersatilePB Source (C)](https://github.com/qemu/qemu/blob/master/hw/arm/versatilepb.c)
 -	[QEMU Boot Implementation](https://github.com/qemu/qemu/blob/master/hw/arm/boot.c)
 
-
 ##  Next Step
 Now that you’ve learned how to access memory using `ldr` and `str`,
 we’ll move on to how to **control program flow using branches, labels, and conditional instructions**.

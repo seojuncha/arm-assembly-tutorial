@@ -70,9 +70,6 @@ These examples help you understand:
 | `bl`         | Branch with link: jump and save return address in lr    |
 | `mov pc, lr` | Return from subroutine (manual function return)         |
 
-## Related References
-
-
 ## Next Step
 Next, we’ll explore how to compare values and make decisions using conditional execution and the `cmp` instruction.
 

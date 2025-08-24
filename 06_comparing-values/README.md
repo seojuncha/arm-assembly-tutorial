@@ -72,9 +72,6 @@ beq equal_label  @ Branch if r0 == r1 (Z == 1)
 | `bcs` | Branch if carry set (unsigned ≥)                             |
 | `bcc` | Branch if carry clear (unsigned <)                           |
 
-
-## Related References
-
 ## Next Step
 Next chapter: **Chapter 7 – Advanced Topics**
 

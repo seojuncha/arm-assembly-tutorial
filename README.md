@@ -36,13 +36,13 @@ Each folder contains:
 
 ### Prerequisites
 
-- `arm-none-eabi-gcc` toolchain
+- [`arm-none-eabi-gcc`](https://developer.arm.com/downloads/-/gnu-rm) toolchain
 - `qemu-system-arm` and `gdb-multiarch` or `arm-none-eabi-gdb`
 - Basic understanding of C (helpful but not required)
 
 Install on Ubuntu:
 ```bash
-sudo apt install gcc-arm-none-eabi qemu gdb-multiarch
+sudo apt install qemu gdb-multiarch
 ```
 
 ## Who Is This For?
@@ -60,7 +60,9 @@ If you’d like to:
 Feel free to submit a Pull Request or open an Issue!
 
 ## Recommended Reading
-- [ARM Documents](https://github.com/ARM-software/abi-aa)
+- [Github ARM Documents](https://github.com/ARM-software/abi-aa)
+-	[QEMU Documentation](https://www.qemu.org/docs/master/)
+-	[ARM Architecture Reference Manual](https://student.cs.uwaterloo.ca/~cs452/docs/ts7200/arm-architecture.pdf)
 
 ## License
 

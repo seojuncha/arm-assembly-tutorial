@@ -81,12 +81,6 @@ gdb-multiarch only-main.elf
 | _start:        | Label used as the program’s entry point |
 | bl main        | Branch with link (used to call C main()) |
 
-## Related References
--	QEMU Documentation
--	ARM Architecture Reference Manual (v4)
--	arm-none-eabi-gcc Toolchain
--	readelf and objdump usage
-
 
 ## Appendix. ELF Analysis Examples
 Here are examples of how to inspect your ELF binary using `readelf` and `objdump`.
