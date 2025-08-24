@@ -20,9 +20,9 @@ Each directory covers a single concept with example code and explanations:
 ```
 01_hello-assembly/           👉 Your first assembly run!
 02_moving-data-around/       👉 Moving data between registers and immediates
-03_store-to-memory/          👉 Store/load data to memory
-04_making-decisions/         👉 Conditional branches and function calls
-05_doing-math/               👉 Arithmetic operations (add, sub, neg)
+03_doing-math/               👉 Arithmetic operations (add, sub, neg)
+04_store-to-memory/          👉 Store/load data to memory
+05_branching/                👉 Conditional branches and condition flags
 06_comparing-values/         👉 Comparing values with CMP
 07_advanced-topics/          👉 Loops, floating point, pointers, arrays, etc.
 ```
