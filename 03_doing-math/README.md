@@ -57,7 +57,7 @@ ARM provides two different flags to indicate different kinds of overflow:
 
 ### Key ARM Arithmetic Instructions
 | Instruction | Description                           |
-|:------------|:--------------------------------------|
+|:-----------:|:--------------------------------------|
 |`add`        | Add two registers                     |
 |`adds`       | Add and update flags                  |
 |`sub`        | Subtract one register from another    |

@@ -66,7 +66,7 @@ Feel free to submit a Pull Request or open an Issue!
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE).
 
 ***Happy Hacking!***  
-– seojuncha
+– seojun

@@ -70,7 +70,7 @@ Use the following expressions to manually inspect CPSR flags:
 ### Arithmetic vs Logical Shift
 ARM provides both logical and arithmetic shifts:
 | Instruction | Name                    | Keeps Sign | Fills With | Typical Use     |
-|-------------|-------------------------|------------|------------|-----------------|
+|:-----------:|:------------------------|:----------:|:----------:|:----------------|
 | `lsl`       | Logical Shift Left      | No         | Zero       | Multiply by 2ⁿ  |
 | `lsr`       | Logical Shift Right     | No         | Zero       | Unsigned divide |
 | `asr`       | Arithmetic Shift Right  | Yes        | Sign bit   | Signed divide   |
@@ -142,11 +142,11 @@ This allows for **many**, but not all, 32-bit constants.
 
 | Source               | Assembled As       | Encodable? | Notes                       |
 |:---------------------|:-------------------|:----------:|:----------------------------|
-| `mov r0, #0`         | `imm8=0x00`        | Yes         | All zero                    |
-| `mov r0, #255`     | `imm8=0xFF`        | Yes         | Max 8-bit                   |
-| `mov r0, #0x80000000`| `0x80 ROR #28`     | Yes         | Rotated value               |
-| `mov r0, #-1`        | `mvn r0, #0`       | Yes         | Bitwise NOT of 0            |
-| `mov r0, #-32`       | `mvn r0, #31`      | Yes         | ~31 = 0xFFFFFFE0            |
+| `mov r0, #0`         | `imm8=0x00`        | Yes        | All zero                    |
+| `mov r0, #255`     | `imm8=0xFF`        | Yes        | Max 8-bit                   |
+| `mov r0, #0x80000000`| `0x80 ROR #28`     | Yes        | Rotated value               |
+| `mov r0, #-1`        | `mvn r0, #0`       | Yes        | Bitwise NOT of 0            |
+| `mov r0, #-32`       | `mvn r0, #31`      | Yes        | ~31 = 0xFFFFFFE0            |
 | `mov r0, #0x100`     | —                  | No         | Not encodable               |
 | `mov r0, #0x12345678`| —                  | No         | Too complex                 |
 
